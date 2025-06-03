@@ -716,4 +716,22 @@ mod enums {
             }
         }
     }
+
+    #[derive(FromStr, Debug, Eq, PartialEq)]
+    #[from_str(rename_all = "SCREAMING-KEBAB-CASE")]
+    enum MyCoolEnum<T> {
+        #[from_str(rename_all = "lowercase")]
+        #[from_str(alias = "foo is cool")]
+        Foo,
+        Bar,
+        #[from_str(skip)]
+        BaR,
+        #[from_str(default)]
+        Baz,
+        FooBar,
+        #[from_str(forward)]
+        Quux(i32),
+        #[from_str(forward)]
+        Quuz(T),
+    }
 }
